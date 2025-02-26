@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Multiple Time Zones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    .timezone {
+      margin-bottom: 1rem;
+    }
+    .time-label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Current Times in Different Time Zones</h1>
+
+  <div class="timezone">
+    <span class="time-label">AEST (澳大利亚东部标准时间):</span>
+    <span id="aest-time"></span>
+  </div>
+
+  <div class="timezone">
+    <span class="time-label">CST (美国中部标准时间 或 中国标准时间):</span>
+    <span id="cst-time"></span>
+  </div>
+
+  <div class="timezone">
+    <span class="time-label">SGT (新加坡时间):</span>
+    <span id="sgt-time"></span>
+  </div>
+
+  <script>
+    // 如果你需要的 CST 是“美国中部时间”，对应时区标识为 "America/Chicago"
+    // 如果你需要的 CST 是“中国标准时间”，对应时区标识为 "Asia/Shanghai"
+    // 这里示例一并演示，你可根据需求自行选择
+
+    const TZ_AEST = "Australia/Sydney";   // AEST 通常用 "Australia/Sydney"；夏令时会变成 AEDT
+    const TZ_CST = "America/Chicago";    // 如果你要的是美国中部时间
+    // const TZ_CST = "Asia/Shanghai";   // 如果你要的是中国标准时间，请改为这一行
+    const TZ_SGT = "Asia/Singapore";     // SGT 新加坡时间，UTC+8
+
+    function updateTimes() {
+      const now = new Date();
+
+      // 使用 toLocaleString + timeZone 选项来格式化
+      const aestTime = now.toLocaleString("en-US", { timeZone: TZ_AEST });
+      const cstTime = now.toLocaleString("en-US", { timeZone: TZ_CST });
+      const sgtTime = now.toLocaleString("en-US", { timeZone: TZ_SGT });
+
+      document.getElementById("aest-time").textContent = aestTime;
+      document.getElementById("cst-time").textContent = cstTime;
+      document.getElementById("sgt-time").textContent = sgtTime;
+    }
+
+    // 每秒刷新一次
+    setInterval(updateTimes, 1000);
+    // 页面加载后先立即刷新一次
+    updateTimes();
+  </script>
+</body>
+</html>
