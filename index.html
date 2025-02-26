@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Current Time</title>
+    <script>
+      function showTime() {
+        document.getElementById("time").innerHTML = new Date().toLocaleString();
+      }
+      // 每隔 1 秒执行一次 showTime
+      setInterval(showTime, 1000);
+    </script>
+  </head>
+  <body onload="showTime()">
+    <h1>Current Time</h1>
+    <div id="time"></div>
+  </body>
+</html>
